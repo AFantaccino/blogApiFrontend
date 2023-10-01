@@ -11,6 +11,7 @@ import {
 	Button,
 	Container,
 	CssBaseline,
+	Table,
 	TableCell,
 	TableRow,
 	TextField,
@@ -108,34 +109,38 @@ const Blog = ({ blog }) => {
 						)}
 					</Box>
 					<Box>
-						<Box component="form" onSubmit={createComment}>
-							<TextField
-								margin="normal"
-								required
-								fullWidth
-								name="comment"
-								label="Comment"
-								id="comment"
-							/>
-							<Button
-								type="submit"
-								fullWidth
-								variant="contained"
-								sx={{ mt: 3, mb: 2 }}
-							>
-								Send
-							</Button>
-						</Box>
+						{loggedUser ? (
+							<Box component="form" onSubmit={createComment}>
+								<TextField
+									margin="normal"
+									required
+									fullWidth
+									name="comment"
+									label="Comment"
+									id="comment"
+								/>
+								<Button
+									type="submit"
+									fullWidth
+									variant="contained"
+									sx={{ mt: 3, mb: 2 }}
+								>
+									Send
+								</Button>
+							</Box>
+						) : (
+							<></>
+						)}
 						<Box>
 							<Typography variant="h4">Comments</Typography>
 							{comments ? (
-								<>
+								<Table>
 									{comments.map((comment, id) => (
-										<Typography key={id} sx={{ margin: 1 }}>
-											{comment}
-										</Typography>
+										<TableRow key={id} sx={{ margin: 1 }}>
+											<TableCell>{comment}</TableCell>
+										</TableRow>
 									))}
-								</>
+								</Table>
 							) : (
 								<></>
 							)}
