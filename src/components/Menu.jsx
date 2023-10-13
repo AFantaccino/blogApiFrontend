@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { logoutUser } from "../reducers/userReducer";
-import { Box, Button, Container, Toolbar } from "@mui/material";
 
 const Menu = () => {
 	const user = useSelector(({ user }) => user);
@@ -15,44 +14,47 @@ const Menu = () => {
 	};
 
 	return (
-		<Container maxWidth="xl">
-			<Toolbar disableGutters>
-				<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-					<Button>
-						<Link to="/">Home</Link>
-					</Button>
-					{user ? (
-						<>
-							<Button>
-								<Link to="/create">Create</Link>
-							</Button>
-							<Button>
-								<Link to="/users">Users</Link>
-							</Button>
-						</>
-					) : (
-						<>
-							<Button>
-								<Link to="/login">Log in</Link>
-							</Button>
-							<Button>
-								<Link to="/signup">Sign Up</Link>
-							</Button>
-						</>
-					)}
-				</Box>
-				<Box sx={{ flexGrow: 0 }}>
-					{user ? (
-						<Box sx={{ display: "flex" }}>
-							<p>Welcome {user.name}</p>
-							<Button onClick={logout}>Logout</Button>
-						</Box>
-					) : (
-						<></>
-					)}
-				</Box>
-			</Toolbar>
-		</Container>
+		<nav className="flex justify-between bg-gray-900 h-10">
+			<div className="flex gap-2 items-center m-2">
+				<div className="text-white">
+					<Link to="/">Home</Link>
+				</div>
+				<div className="text-white">
+					<Link to="/blogs">Blogs</Link>
+				</div>
+				{user ? (
+					<>
+						<div className="text-white">
+							<Link to="/create">Create</Link>
+						</div>
+						<div className="text-white">
+							<Link to="/users">Users</Link>
+						</div>
+					</>
+				) : (
+					<>
+						<div className="text-white">
+							<Link to="/login">Log in</Link>
+						</div>
+						<div className="text-white">
+							<Link to="/signup">Sign Up</Link>
+						</div>
+					</>
+				)}
+			</div>
+			<div className="text-white flex gap-2 items-center m-2">
+				{user ? (
+					<>
+						<p>Welcome {user.name}</p>
+						<div onClick={logout} className="cursor-pointer">
+							Logout
+						</div>
+					</>
+				) : (
+					<></>
+				)}
+			</div>
+		</nav>
 	);
 };
 

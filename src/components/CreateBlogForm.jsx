@@ -2,14 +2,6 @@ import { useDispatch } from "react-redux";
 import { newNotification } from "../reducers/notificationReducer";
 import { createBlog } from "../reducers/blogsReducer";
 import { useField } from "../customHooks";
-import {
-	Box,
-	Button,
-	Container,
-	CssBaseline,
-	TextField,
-	Typography
-} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const CreateBlogForm = () => {
@@ -45,56 +37,50 @@ const CreateBlogForm = () => {
 	};
 
 	return (
-		<Container component="main" maxWidth="xs">
-			<Box
-				sx={{
-					marginTop: 8,
-					display: "flex",
-					flexDirection: "column",
-					alignItems: "center"
-				}}
+		<div className="flex flex-col m-5 items-center">
+			<p className="m-5 font-bold text-xl">Create</p>
+			<form
+				onSubmit={create}
+				className="flex flex-col gap-2 items-center"
 			>
-				<CssBaseline />
-				<Typography variant="h5">Create</Typography>
-				<Box component="form" onSubmit={create}>
-					<TextField
+				<label htmlFor="title">
+					<p className="font-bold">title</p>
+					<input
 						{...title}
-						margin="normal"
 						required
-						fullWidth
 						id="title"
-						label="Title"
 						name="title"
+						className="border-2 border-solid border-black rounded-md"
 					/>
-					<TextField
+				</label>
+				<label htmlFor="author">
+					<p className="font-bold">author</p>
+					<input
 						{...author}
-						margin="normal"
 						required
-						fullWidth
 						id="author"
-						label="Author"
 						name="author"
+						className="border-2 border-solid border-black rounded-md"
 					/>
-					<TextField
+				</label>
+				<label htmlFor="url">
+					<p className="font-bold">url</p>
+					<input
 						{...url}
-						margin="normal"
 						required
-						fullWidth
 						id="url"
-						label="Url"
 						name="url"
+						className="border-2 border-solid border-black rounded-md"
 					/>
-					<Button
-						type="submit"
-						fullWidth
-						variant="contained"
-						sx={{ mt: 3, mb: 2 }}
-					>
-						Create
-					</Button>
-				</Box>
-			</Box>
-		</Container>
+				</label>
+				<button
+					type="submit"
+					className="w-fit rounded-lg bg-cyan-300 p-2"
+				>
+					Create
+				</button>
+			</form>
+		</div>
 	);
 };
 

@@ -1,7 +1,11 @@
-a {
-	color: inherit;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.success {
+	background-color: green;
 }
 
-ul {
-	list-style-type: none;
+.error {
+	background-color: red;
 }

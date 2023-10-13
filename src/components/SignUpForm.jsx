@@ -3,17 +3,6 @@ import { newNotification } from "../reducers/notificationReducer";
 import { signUpUser } from "../reducers/userReducer";
 import { useField } from "../customHooks";
 import { Link, useNavigate } from "react-router-dom";
-import {
-	Box,
-	Button,
-	Checkbox,
-	Container,
-	CssBaseline,
-	FormControlLabel,
-	Grid,
-	TextField,
-	Typography
-} from "@mui/material";
 
 const SignUpForm = () => {
 	const dispatch = useDispatch();
@@ -41,79 +30,61 @@ const SignUpForm = () => {
 	};
 
 	return (
-		<Container component="main" maxWidth="xs">
-			<CssBaseline />
-			<Box
-				sx={{
-					marginTop: 8,
-					display: "flex",
-					flexDirection: "column",
-					alignItems: "center"
-				}}
+		<div className="flex flex-col m-5 items-center">
+			<p className="m-5 font-bold text-xl">Sign Up</p>
+			<form
+				onSubmit={signup}
+				className="flex flex-col gap-2 items-center"
 			>
-				<Typography component="h1" variant="h5">
-					Sign Up
-				</Typography>
-				<Box
-					component="form"
-					onSubmit={signup}
-					noValidate
-					sx={{ mt: 1 }}
+				<div>
+					<label htmlFor="name">
+						<p className="font-bold">name</p>
+						<input
+							{...name}
+							required
+							id="name"
+							name="name"
+							className="border-2 border-solid border-black rounded-md"
+						/>
+					</label>
+				</div>
+				<div>
+					<label htmlFor="username">
+						<p className="font-bold">username</p>
+						<input
+							{...username}
+							required
+							id="username"
+							label="Username"
+							name="username"
+							className="border-2 border-solid border-black rounded-md"
+						/>
+					</label>
+				</div>
+				<div>
+					<label htmlFor="password">
+						<p className="font-bold">password</p>
+						<input
+							{...password}
+							required
+							name="password"
+							label="Password"
+							id="password"
+							className="border-2 border-solid border-black rounded-md"
+						/>
+					</label>
+				</div>
+				<button
+					type="submit"
+					className="w-fit rounded-lg bg-cyan-300 p-2"
 				>
-					<TextField
-						{...name}
-						margin="normal"
-						required
-						fullWidth
-						id="name"
-						label="name"
-						name="Name"
-						autoComplete="name"
-						autoFocus
-					/>
-					<TextField
-						{...username}
-						margin="normal"
-						required
-						fullWidth
-						id="username"
-						label="Username"
-						name="username"
-						autoComplete="username"
-						autoFocus
-					/>
-					<TextField
-						{...password}
-						margin="normal"
-						required
-						fullWidth
-						name="password"
-						label="Password"
-						id="password"
-						autoComplete="current-password"
-					/>
-					<FormControlLabel
-						control={<Checkbox value="remember" color="primary" />}
-						label="Remember me"
-					/>
-					<Button
-						type="submit"
-						fullWidth
-						variant="contained"
-						sx={{ mt: 3, mb: 2 }}
-					>
-						Sign In
-					</Button>
-					<Grid container>
-						<Grid item>
-							<Link to="/login">
-								{"Already have an account? Log In"}
-							</Link>
-						</Grid>
-					</Grid>
-				</Box>
-			</Box>
-		</Container>
+					Sign Up
+				</button>
+				<div>
+					<Link to="/login">{"Already an account? Log in"}</Link>
+				</div>
+			</form>
+		</div>
 	);
 };
 

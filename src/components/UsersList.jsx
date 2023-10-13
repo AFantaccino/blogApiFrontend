@@ -1,61 +1,27 @@
 import { useSelector } from "react-redux";
 import User from "./User";
 import { useMatch } from "react-router-dom";
-import {
-	Box,
-	Container,
-	Paper,
-	Table,
-	TableBody,
-	TableCell,
-	TableContainer,
-	TableHead,
-	TableRow,
-	Typography
-} from "@mui/material";
 
 const UsersList = () => {
-	const match = useMatch("/users/:id");
-
 	const users = useSelector(({ usersList }) => usersList);
 
-	const user = match
-		? users.filter(user => user.id === match.params.id)
-		: null;
-
-	if (user !== null) {
-		return (
-			<Container>
-				<Box>
-					{user.map(user => (
+	return (
+		<div className="flex flex-col place-items-center gap-3 m-5">
+			<p className="m-5 font-bold text-xl">Users</p>
+			<table className="w-1/2 border border-black">
+				<thead>
+					<tr>
+						<td>&nbsp;</td>
+						<td>blogs created</td>
+					</tr>
+				</thead>
+				<tbody className="odd:bg-slate-500 text-white even:bg-green-300">
+					{users.map(user => (
 						<User key={user.id} user={user} />
 					))}
-				</Box>
-			</Container>
-		);
-	}
-
-	return (
-		<Container>
-			<Typography variant="h5" sx={{ margin: 1, textAlign: "center" }}>
-				Users
-			</Typography>
-			<TableContainer component={Paper}>
-				<Table sx={{ minWidth: 650 }}>
-					<TableHead>
-						<TableRow>
-							<TableCell>&nbsp;</TableCell>
-							<TableCell>blogs created</TableCell>
-						</TableRow>
-					</TableHead>
-					<TableBody>
-						{users.map(user => (
-							<User key={user.id} user={user} />
-						))}
-					</TableBody>
-				</Table>
-			</TableContainer>
-		</Container>
+				</tbody>
+			</table>
+		</div>
 	);
 };
 
